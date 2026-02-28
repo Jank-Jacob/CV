@@ -1,6 +1,6 @@
-FROM ghcr.io/josiahbull/dotfiles:latest
+FROM ghcr.io/Jank-Jacob/dotfiles:latest
 
-# Install everything required to build the resume.
+# Install everything required to build the cv.
 RUN sudo apt-get update && sudo apt-get install \
     -y \
     build-essential \

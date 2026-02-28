@@ -1,0 +1,65 @@
+\cvsection{Relevant Projects}
+
+\begin{cventries}
+  \cventry%
+    {Lead Engineer \& Team Captain}
+    {VEX \& VEXU Robotics Competition}
+    {Global / New Zealand}
+    {2016 --- 2024}
+    {
+      \begin{cvitems}
+        \item {Led design, fabrication, and programming for the \textbf{2023 VEXU World Championship Excellence Award} winning team.}
+        \showfor{isMech}{
+          \item {Manufactured high-precision robot chassis from sheet aluminium using CNC routers and custom 3D-printed components.}
+        }
+        \ifboolexpr{togl {isSoft} or togl {isEmbed}}{
+          \item {Developed custom motion control algorithms and sensor fusion for autonomous navigation for single robot and 2vs2 match formats.}
+        }{}
+        \item {Managed the team and processes including CAD version control and \textbf{hardware-in-the-loop testing cycles}.}
+      \end{cvitems}
+    }
+
+  \showfor{isMech}{
+    \cventry%
+      {Contract Fabricator}
+      {Custom Air Intake Adaptor}
+      {Personal Commission}
+      {2024}
+      {
+        \begin{cvitems}
+          \item {Engineered a bespoke 6061-T6 aluminium interface block to adapt a performance engine to an existing intake manifold.}
+          \item {Completed measurements, SolidWorks design, \textbf{HSMWorks CAM pathing}, and \textbf{3-axis CNC machining.}}
+        \end{cvitems}
+      }
+  }
+
+
+  \cventry%
+    {Electronics \& HV Team Member}
+    {Formula SAE}
+    {Wellington, NZ}
+    {2022 --- 2023}
+    {
+      \begin{cvitems}
+        \item {Executed electronic manufacturing and installation for competition vehicles using Autodesk Inventor, Onshape, and Altium.}
+        \item {Conducted critical system grounding and high-voltage segment assembly, ensuring compliance with strict competition safety regulations.}
+      \end{cvitems}
+    }
+
+  \cventry%
+    {Designer \& Builder}
+    {Self-Built 3-Axis CNC Router}
+    {Personal Project}
+    {2022 --- 2023}
+    {
+      \begin{cvitems}
+        \item {Constructed a 0.1mm precision 3-axis CNC router capable of machining 6061-T6 aluminium for VEXU and personal clients.}
+        \showfor{isMech}{
+          \item {Integrated a 2.2kW water-cooled spindle and managed the mechanical alignment of the $970 \times 610$mm work area.}
+        }
+        \showfor{isSoft}{
+          \item {Configured GRBL-based control systems and optimised CAM toolpaths for efficient material removal and surface finish.}
+        }
+      \end{cvitems}
+    }
+\end{cventries}

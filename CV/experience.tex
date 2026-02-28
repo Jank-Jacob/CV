@@ -1,0 +1,87 @@
+\cvsection{Experience}
+
+\begin{cventries}
+  \cventry%
+  {Mechatronics Engineer Production \& Integration}
+  {Clutterbot}
+  {Wellington, New Zealand}
+  {May 2024 --- Present}
+  {
+    \begin{cvitems}
+      % --- Leadership (Always Show)
+      \item {Acted as a primary technical interface between Wellington and Bengaluru offices, synchronising cross-functional teams across Embedded, Robotics, Mechanical, and Cloud domains.}
+      \item {Directly managed an engineering technician and interns, overseeing diverse projects including motor test-runners and robotic actuator lifecycle testing.}
+      \item {Led end-to-end Quality Assurance (QA) and system validation, covering mechanical durability, PCB integrity, and software stack reliability.}
+
+      % --- Software / DevOps (isSoft) ---
+      \showfor{isSoft}{
+        \item {Streamlined software deployment by implementing Debianisation and CI/CD pipelines, reducing installation time from \textbf{one week to two hours}.}
+        \item {Developed a replacement custom C++ communication library and Linux API from scratch to interface with STM32-based hardware.}
+        \item {Implemented remote diagnostic and observation procedures using VPNs, SSH, and wireless monitoring for global fleet debugging.}
+      }
+
+      % --- Embedded / Firmware (isEmbed / isElec) ---
+      \ifboolexpr{togl {isEmbed} or togl {isElec}}{
+        \item {Authored firmware rewrites and control system modifications for STM32 microcontrollers to improve sensor data acquisition.}
+        \item {Refined CI/CD pipelines for embedded source code, ensuring version-controlled and reproducible builds across the robotic platform.}
+        \item {Performed deep-level fault finding across the system stack, from custom PCBs to mobile/cloud infrastructure protocols.}
+      }{}
+
+      % --- Systems & Linux (isSoft / isEmbed) ---
+      \ifboolexpr{togl {isSoft} or togl {isEmbed}}{
+        \item {Optimised robotic reliability by developing custom \textbf{Systemd services} for automated process recovery and hardware monitoring.}
+        \item {Managed OS-level customisations and base image modifications to create a hardened, reproducible environment for the robotic fleet.}
+        \item {Developed and maintained \textbf{Linux kernel drivers} and hardware abstraction layers to facilitate low-latency communication with custom peripherals.}
+        \item {Architected automated \textbf{bootstrapping procedures} for new hardware, reducing manual configuration and ensuring fleet-wide software parity.}
+      }{}
+
+      % --- Mechanical / Mechatronics (isMech) ---
+      \showfor{isMech}{
+        \item {Designed and commissioned Highly Accelerated Lifecycle Testing (HALT) rigs for robotic actuators and gearboxes using STM32 automation.}
+        \item {Identified and rectified legacy mechanical design flaws, producing bespoke replacement parts and assembly jigs to improve reproducibility.}
+        \item {Developed standardised production processes and inventory management systems to ensure hardware consistency during rapid scaling.}
+      }
+      
+      \item {Utilised Jira and GitLab for project management, issue tracking, and financial/stock management script automation.}
+    \end{cvitems}
+  }
+
+  \cventry%
+    {Mechatronics Engineering Intern}
+    {Fraser Gear}
+    {Te Puke, New Zealand}
+    {Nov. 2021 --- Feb. 2022}
+    {
+      \begin{cvitems}
+        \item {Digitised and redesigned electronics and software for a mass kiwifruit pollinator.}
+        \item {Designed a large-scale kiwifruit transport conveyor system for a pack-house using \textbf{SolidWorks}.}
+        \item {Drafted bespoke CAD models for walk-in clients, working closely with in house machinists and CNC operators for manufacturing.}
+        \item {Conducted R&D and documented technical recommendations for a range of future products.}
+      \end{cvitems}
+    }
+
+  \cventry%
+    {Product Development Engineering Intern}
+    {Sixth Sense Marine}
+    {Tauranga, New Zealand}
+    {Jul. 2020 --- Nov. 2021}
+    {
+      \begin{cvitems}
+        \item {Assembled a prototype device for assisting competitive sailors with training.}
+        \item {Investigated and integrated sensors and microcontrollers}
+        \begin{cvitems}
+          \item {Primarily used Arduino, investigated \textbf{STM32} and \textbf{ESP32} as future options.}
+          \item {Integrated and utilised \textbf{9-axis IMUs} and \textbf{GPS} for accurate position tracking.}
+          \item {Integrated an LCD display and UI including multiple navigatable menus, live feedback and persistent settings.}
+          \item {Used sensors to record environmental conditions and benchmark user performance.}
+        \end{cvitems}
+      \end{cvitems}
+    }
+
+    \cvhonor%
+    {Volunteer Head Referee}
+    {VEX Robotics World Championships (Dallas, TX), Australian \& NZ Nationals}
+    {Global}
+    {2020 --- 2025}
+
+\end{cventries}

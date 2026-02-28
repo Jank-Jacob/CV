@@ -1,15 +1,23 @@
-resume.*
-coverletter.*
+# Ignore build artifacts
+/builds/
+*.pdf
 *.png
 
+# LaTeX junk
 *.aux
 *.fls
 *.log
-*.pdf
 *.fdb_latexmk
 *.xdv
 *.gz
-.DS_Store
+*.out
+*.xml
+*.bcf
 
-!resume.tex
+# Source files to KEEP (Explicitly)
+!CV.tex
 !coverletter.tex
+!build.sh
+!Dockerfile
+!.devcontainer/
+!.github/

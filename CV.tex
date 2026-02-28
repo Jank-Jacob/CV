@@ -28,21 +28,70 @@
 % If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 
+
+%-------------------------------------------------------------------------------
+% CONDITIONAL COMPILATION TOGGLES
+%-------------------------------------------------------------------------------
+% Define toggles for each specific job type
+\newtoggle{isMech}
+\newtoggle{isElec}
+\newtoggle{isEmbed}
+\newtoggle{isSoft}
+
+% Set default state - show nothing
+\togglefalse{isMech}
+\togglefalse{isElec}
+\togglefalse{isEmbed}
+\togglefalse{isSoft}
+
+% Read the command line flag and flip the appropriate toggles
+\ifdefined\jobtype%
+  \ifstrequal{\jobtype}{mech}{\toggletrue{isMech}}{}
+  \ifstrequal{\jobtype}{electrical}{\toggletrue{isElec}}{}
+  
+  % Embedded Currently Overlaps
+  \ifstrequal{\jobtype}{embedded}{
+      \toggletrue{isEmbed}
+      \toggletrue{isSoft}
+  }{}
+  
+  \ifstrequal{\jobtype}{software}{\toggletrue{isSoft}}{}
+  
+  % Mechatronics generally overlaps across the board
+  \ifstrequal{\jobtype}{mechatronics}{
+      \toggletrue{isMech}
+      \toggletrue{isElec}
+      \toggletrue{isEmbed}
+      \toggletrue{isSoft}
+  }{}
+\else
+  % Default behavior if NO flag is provided (e.g., compile a master copy)
+  \toggletrue{isMech}
+  \toggletrue{isElec}
+  \toggletrue{isEmbed}
+  \toggletrue{isSoft}
+\fi
+
+% Helper command for easier reading in content files
+% Usage: \showfor{isSoft}{This bullet point only shows if isSoft is true.}
+\newcommand{\showfor}[2]{\iftoggle{#1}{#2}{}}
+
+
 %-------------------------------------------------------------------------------
 %	PERSONAL INFORMATION
 %	Comment any of the lines below if they are not required
 %-------------------------------------------------------------------------------
 % Available options: circle|rectangle,edge/noedge,left/right
 % \photo[rectangle,edge,right]{profile}
-\name{Josiah}{Bull}
-\position{Senior Software Engineer}
-\address{Christchurch, New Zealand}
+\name{Jacob}{Church}
+\position{Mechatronics Engineer}
+\address{Kingston, Wellington, New Zealand}
 
-\mobile{(+64) 27 448 7158}
-\email{josiah.bull7@gmail.com}
-% \homepage{josiahbull.com}
-\github{JosiahBull}
-\linkedin{josiah-bull}
+\mobile{(+64) 21 056 7154}
+\email{jacobchurch.jjc@gmail.com}
+% \homepage{jacob-church.com}
+% \github{Jank-Jacob}
+\linkedin{jacobjchurch}
 % \gitlab{gitlab-id}
 % \stackoverflow{SO-id}{SO-name}
 % \twitter{@twit}
@@ -68,15 +117,16 @@
 %	CV/RESUME CONTENT
 %	Each section is imported separately, open each file in turn to modify content
 %-------------------------------------------------------------------------------
-\input{resume/experience.tex}
-% \input{resume/achievements.tex}
-\input{resume/projects.tex}
-\input{resume/education.tex}
-\input{resume/skills.tex}
+\input{CV/personal_statement.tex}
+\input{CV/experience.tex}
+\input{CV/achievements.tex}
+\input{CV/projects.tex}
+\input{CV/education.tex}
+\input{CV/skills.tex}
 
 \makecvfooter
   {\today}
-  {Josiah Bull~~~·~~~Résumé}
+  {Jacob Church~~~·~~~CV}
   {\thepage}
 
 
