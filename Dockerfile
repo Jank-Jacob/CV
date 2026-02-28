@@ -1,18 +1,21 @@
-FROM ghcr.io/jank-jacob/dotfiles:latest
+# Official TeX Live image
+FROM texlive/texlive:latest
 
-# Install everything required to build the cv.
-RUN sudo apt-get update && sudo apt-get install \
-    -y \
+RUN apt-get update && apt-get install -y \
     build-essential \
-    texlive \
-    texlive-fonts-recommended \
-    texlive-fonts-extra \
     poppler-utils \
-    texlive-xetex \
-    vim && \
-    sudo apt-get clean && \
-    sudo rm -rf /var/lib/apt/lists/*
+    vim \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set the shell to bash
-RUN chsh -s /bin/bash
-SHELL ["/bin/bash", "-c"]
+# Set the working directory for the build
+WORKDIR /workspace
+
+# Copy the CV source files into the container
+COPY . .
+
+# Ensure the build script has execution permissions
+RUN chmod +x build.sh
+
+# The build script runs xelatex for each variant
+CMD ["./build.sh"]

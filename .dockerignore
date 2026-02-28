@@ -1,1 +1,9 @@
+# Ignore everything by default
 *
+
+# But explicitly allow these files/folders
+!build.sh
+!CV.tex
+!awesome-cv.cls
+!CV/
+!fonts/
