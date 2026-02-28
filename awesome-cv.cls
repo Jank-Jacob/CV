@@ -383,8 +383,8 @@
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
 % Others
-\newcommand{\acvSectionTopSkip}{0mm}
-\newcommand{\acvSectionContentTopSkip}{2.5mm}
+\newcommand{\acvSectionTopSkip}{3mm}
+\newcommand{\acvSectionContentTopSkip}{0.5mm}
 
 
 %-------------------------------------------------------------------------------
@@ -584,12 +584,15 @@
 }
 
 % Define a section for CV
-% Usage: \cvsection{<section-title>}
+% --- SECTION ---
 \newcommand{\cvsection}[1]{%
-  \vspace{\acvSectionTopSkip}
+  \par\addvspace{\acvSectionTopSkip}
+  \needspace{25mm} 
   \sectionstyle{#1}
   \phantomsection
   \color{sectiondivider}\vhrulefill{0.9pt}
+  \nopagebreak[4]
+  \vspace{1mm}
 }
 
 % Define a subsection for CV
@@ -611,28 +614,35 @@
  \vspace{2mm}
 }
 
-% Define an environment for cventry
+% --- ENTRIES ---
 \newenvironment{cventries}{%
   \vspace{\acvSectionContentTopSkip}
-  \begin{center}
+  % Removed itemize to prevent extra left margins/spacing
+  \begin{flushleft} 
 }{%
-  \end{center}
-}
-% Define an entry of cv information
-% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
-\newcommand*{\cventry}[5]{%
-  \vspace{-2.0mm}
-  \setlength\tabcolsep{0pt}
-  \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \ifempty{#2#3}
-      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
-  \end{tabular*}%
+  \end{flushleft}
 }
 
+% --- ENTRIES ---
+\newcommand*{\cventry}[5]{%
+  \vspace{1.5mm}
+  \needspace{20mm}
+  \begin{minipage}{\textwidth}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+      \ifempty{#2#3}
+        {\entrypositionstyle{\fontsize{11.5pt}{1em}\selectfont#1} & \entrydatestyle{#4} \\}
+        {\entrytitlestyle{\fontsize{11.5pt}{1em}\selectfont#2} & \entrylocationstyle{#3} \\
+        \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \end{tabular*}
+    \vspace{-2.5mm} 
+    \descriptionstyle{#5}
+    \vspace{1mm} 
+  \end{minipage}
+  \par
+  \vspace{0.5mm}
+}
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
   \begin{center}
@@ -657,11 +667,13 @@
   \end{tabular*}
 }
 
-% Define an environment for cvhonor
+% --- HONORS (Achievements) ---
 \newenvironment{cvhonors}{%
   \vspace{\acvSectionContentTopSkip}
- % \vspace{-2mm}
+  \vspace{-2mm}
   \begin{center}
+    % This is a table; tables cannot break across pages by default.
+    % The \needspace in \cvsection will handle the heading attachment.
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
@@ -675,10 +687,10 @@
   \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3} \\
 }
 
-% Define an environment for cvskill
+% --- SKILLS ---
 \newenvironment{cvskills}{%
+  \needspace{15mm} % Ensures the Skills heading and at least 2-3 skills stay together
   \vspace{\acvSectionContentTopSkip}
- % \vspace{-2.0mm}
   \begin{center}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
@@ -693,17 +705,18 @@
 	\skilltypestyle{#1} & \skillsetstyle{#2} \\
 }
 
-% Define an environment for cvitems(for cventry)
+% --- CV ITEMS (The Bullets) ---
 \newenvironment{cvitems}{%
- \vspace{-4.0mm}
+  \vspace{0.5mm}
   \begin{justify}
-  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+  % begin{itemize}
+  \begin{itemize}[leftmargin=2ex, nosep, noitemsep, topsep=0pt, partopsep=0pt]
     \setlength{\parskip}{0pt}
     \renewcommand{\labelitemi}{\bullet}
+    \@itempenalty=5000 
 }{%
   \end{itemize}
   \end{justify}
-  \vspace{-5mm}
 }
 
 

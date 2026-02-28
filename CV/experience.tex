@@ -6,82 +6,78 @@
   {Clutterbot}
   {Wellington, New Zealand}
   {May 2024 --- Present}
+  {}
   {
     \begin{cvitems}
-      % --- Leadership (Always Show)
-      \item {Acted as a primary technical interface between Wellington and Bengaluru offices, synchronising cross-functional teams across Embedded, Robotics, Mechanical, and Cloud domains.}
-      \item {Directly managed an engineering technician and interns, overseeing diverse projects including motor test-runners and robotic actuator lifecycle testing.}
-      \item {Led end-to-end Quality Assurance (QA) and system validation, covering mechanical durability, PCB integrity, and software stack reliability.}
-
-      % --- Software / DevOps (isSoft) ---
+      \item {Acted as a primary technical interface for interdisciplinary teams in Wellington and Bengaluru.}
+      \item {Directly \textbf{managed technicians and interns}, in assembly, hardware testing and smarthome integration.}
+      \item {Led end-to-end Quality Assurance (QA) and system validation for mechanical and software systems.}
       \showfor{isSoft}{
-        \item {Streamlined software deployment by implementing Debianisation and CI/CD pipelines, reducing installation time from \textbf{one week to two hours}.}
-        \item {Developed a replacement custom C++ communication library and Linux API from scratch to interface with STM32-based hardware.}
-        \item {Implemented remote diagnostic and observation procedures using VPNs, SSH, and wireless monitoring for global fleet debugging.}
+        \item {Streamlined software deployment by implementing Debianisation and CI/CD pipelines, reducing installation time from one week to two hours.}
+        \item {Developed a \textbf{bespoke C++ communication library} and API for linux to microcontroller comms.}
+        \item {Implemented remote diagnostic and observation procedures for robots, using \textbf{VPNs and SSH}.}
       }
-
-      % --- Embedded / Firmware (isEmbed / isElec) ---
       \ifboolexpr{togl {isEmbed} or togl {isElec}}{
-        \item {Authored firmware rewrites and control system modifications for STM32 microcontrollers to improve sensor data acquisition.}
-        \item {Refined CI/CD pipelines for embedded source code, ensuring version-controlled and reproducible builds across the robotic platform.}
-        \item {Performed deep-level fault finding across the system stack, from custom PCBs to mobile/cloud infrastructure protocols.}
+        \item {Authored firmware and control modifications for \textbf{STM32 microcontrollers} improving sensor data acquisition.}
+        \item {Refined \textbf{CI/CD pipelines} for embedded source code, ensuring reproducible well versioned builds.}
+        \item {Performed fault finding across the entire system stack, from PCBs to mobile/cloud infrastructure protocols.}
       }{}
-
-      % --- Systems & Linux (isSoft / isEmbed) ---
       \ifboolexpr{togl {isSoft} or togl {isEmbed}}{
-        \item {Optimised robotic reliability by developing custom \textbf{Systemd services} for automated process recovery and hardware monitoring.}
-        \item {Managed OS-level customisations and base image modifications to create a hardened, reproducible environment for the robotic fleet.}
-        \item {Developed and maintained \textbf{Linux kernel drivers} and hardware abstraction layers to facilitate low-latency communication with custom peripherals.}
-        \item {Architected automated \textbf{bootstrapping procedures} for new hardware, reducing manual configuration and ensuring fleet-wide software parity.}
+        \item {Utilised custom \textbf{Systemd services} for automated processes and hardware driver management.}
+        \item {Modified Linux kernel drivers and hardware abstraction layers for a bespoke OS and hardware.}
+        \item {Architected automated bootstrapping procedures for new hardware, replacing lengthy 
+              tedious manual configuration and ensuring fleet-wide software consistency.}
+        \item {Developed and improved \textbf{robot vision} and control packages using \textbf{C++, Python and ROS2}.}
       }{}
-
-      % --- Mechanical / Mechatronics (isMech) ---
       \showfor{isMech}{
-        \item {Designed and commissioned Highly Accelerated Lifecycle Testing (HALT) rigs for robotic actuators and gearboxes using STM32 automation.}
-        \item {Identified and rectified legacy mechanical design flaws, producing bespoke replacement parts and assembly jigs to improve reproducibility.}
-        \item {Developed standardised production processes and inventory management systems to ensure hardware consistency during rapid scaling.}
+        \item {Developed various parts, and jigs using \textbf{SolidWorks with 3D Experience} and \textbf{Onshape}.}
+        \item {Designed and operated Highly Accelerated Lifecycle Testing \textbf{(HALT)} rigs for actuators and gearboxes.}
+        \item {Identified and rectified mechanical design flaws, and with assembly jigs improved reproducibility.}
+        \item {Developed standardised production processes and inventory management systems.}
       }
-      
-      \item {Utilised Jira and GitLab for project management, issue tracking, and financial/stock management script automation.}
+      \item {Utilised \textbf{Jira and GitLab} integrations for project management and issue tracking.}
     \end{cvitems}
   }
-
   \cventry%
     {Mechatronics Engineering Intern}
     {Fraser Gear}
-    {Te Puke, New Zealand}
+    {Te Puke, NZ}
     {Nov. 2021 --- Feb. 2022}
+    {}
     {
       \begin{cvitems}
         \item {Digitised and redesigned electronics and software for a mass kiwifruit pollinator.}
         \item {Designed a large-scale kiwifruit transport conveyor system for a pack-house using \textbf{SolidWorks}.}
-        \item {Drafted bespoke CAD models for walk-in clients, working closely with in house machinists and CNC operators for manufacturing.}
-        \item {Conducted R&D and documented technical recommendations for a range of future products.}
+        \item {Drafted bespoke CAD models for walk-in clients, working closely with in-house machinists and CNC operators for manufacturing.}
+        \item {Conducted R\&D and documented technical recommendations for a range of future products.}
+        \item {Operated with \textbf{SolidWorks PDM} for CAD component and Assembly management between coworkers.}
       \end{cvitems}
     }
-
   \cventry%
     {Product Development Engineering Intern}
     {Sixth Sense Marine}
-    {Tauranga, New Zealand}
+    {Tauranga, NZ}
     {Jul. 2020 --- Nov. 2021}
+    {}
     {
       \begin{cvitems}
         \item {Assembled a prototype device for assisting competitive sailors with training.}
-        \item {Investigated and integrated sensors and microcontrollers}
-        \begin{cvitems}
-          \item {Primarily used Arduino, investigated \textbf{STM32} and \textbf{ESP32} as future options.}
-          \item {Integrated and utilised \textbf{9-axis IMUs} and \textbf{GPS} for accurate position tracking.}
-          \item {Integrated an LCD display and UI including multiple navigatable menus, live feedback and persistent settings.}
-          \item {Used sensors to record environmental conditions and benchmark user performance.}
-        \end{cvitems}
+        \item {Investigated and integrated sensors and microcontrollers (Arduino, STM32, and ESP32).}
+        \item {Integrated \textbf{9-axis IMUs} and \textbf{GPS} for \textbf{accurate position tracking} and performance benchmarking.}
+        \item {Developed an LCD user interface including navigatable menus, live feedback, and persistent settings.}
       \end{cvitems}
     }
-
-    \cvhonor%
+  \cventry%
     {Volunteer Head Referee}
-    {VEX Robotics World Championships (Dallas, TX), Australian \& NZ Nationals}
-    {Global}
+    {VEX Robotics \& Kiwibots}
+    {Dallas, TX, Australia \& NZ}
     {2020 --- 2025}
-
+    {}
+    {
+      \begin{cvitems}
+        \item {Officiated VEXU World Championships (USA) and National Championships (AU/NZ).}
+        \item {Managed high-pressure conflict resolution and technical compliance for international teams.}
+      \end{cvitems}
+    }
 \end{cventries}
+\vspace{2mm}

@@ -5,30 +5,26 @@
   \cvskill%
     {Languages}
     {C/C++, Embedded C, Python, Bash, Matlab/Simulink}
-
   % Software & Systems (isSoft / isEmbed)
   \ifboolexpr{togl {isSoft} or togl {isEmbed}}{
     \cvskill%
       {Systems \& DevOps}
       {Linux (Debian/Ubuntu), ROS2, \showfor{isSoft}{Systemd, Bootstrapping, Docker, }\showfor{isEmbed}{Kernel Drivers, }GitLab CI/CD, Jira}
   }{}
-
   % Hardware & Design (isMech / isElec / isEmbed)
   \ifboolexpr{togl {isMech} or togl {isElec} or togl {isEmbed}}{
     \cvskill%
       {Engineering Design}
       {\showfor{isMech}{SolidWorks, Autodesk Inventor, HSMWorks CAM, } \showfor{isElec}{Altium, PCB Validation, } \showfor{isEmbed}{STM32, ESP32, Sensor Fusion}}
   }{}
-
   % Manufacturing (isMech)
   \showfor{isMech}{
     \cvskill%
       {Fabrication}
       {3-Axis CNC Machining, Manual Milling, 3D Printing (SLA/FDM), HALT Rig Design}
   }
-
   % Soft Skills (Always Show - Short & Impactful)
   \cvskill%
     {Professional}
-    {Cross-functional Team Leadership, International Stakeholder Management, Technical Documentation, Agile Project Management}
+    {Cross-functional Team Leadership, International Collaboration, Technical Documentation, Agile Project Management}
 \end{cvskills}

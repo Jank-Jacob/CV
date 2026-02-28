@@ -26,8 +26,6 @@
 		"source=${env:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
 		// Mout the gitconfig for git
 		"source=${env:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
-		// Mount zsh_history
-		"source=${env:HOME}/.zsh_history,target=/root/.zsh_history,type=bind,consistency=cached",
 		// Mount bash_history
 		"source=${env:HOME}/.bash_history,target=/root/.bash_history,type=bind,consistency=cached"
 	]

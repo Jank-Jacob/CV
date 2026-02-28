@@ -83,7 +83,7 @@ jobs:
       - name: Build all CV variants
         run: |
           docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:main
-          docker run --rm -v ${{ github.workspace }}:/workspace ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:main /bin/zsh -c "
+          docker run --rm -v ${{ github.workspace }}:/workspace ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:main /bin/bash -c "
             cd /workspace && ./build.sh
           "
 

@@ -5,7 +5,7 @@
 \documentclass[11pt, a4paper]{awesome-cv}
 
 % Configure page margins with geometry
-\geometry{left=1.5cm, top=.5cm, right=1.5cm, bottom=1.4cm, footskip=.5cm}
+\geometry{left=1.5cm, top=.3cm, right=1.5cm, bottom=1.4cm, footskip=.5cm}
 
 % Color for highlights
 % Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
@@ -29,6 +29,7 @@
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 
 
+
 %-------------------------------------------------------------------------------
 % CONDITIONAL COMPILATION TOGGLES
 %-------------------------------------------------------------------------------
@@ -46,32 +47,28 @@
 
 % Read the command line flag and flip the appropriate toggles
 \ifdefined\jobtype%
-  \ifstrequal{\jobtype}{mech}{\toggletrue{isMech}}{}
-  \ifstrequal{\jobtype}{electrical}{\toggletrue{isElec}}{}
+  \edef\expandedjobtype{\jobtype} % Force expansion
   
-  % Embedded Currently Overlaps
-  \ifstrequal{\jobtype}{embedded}{
+  \ifnum\pdfstrcmp{\expandedjobtype}{mech}=0 \toggletrue{isMech} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{electrical}=0 \toggletrue{isElec} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{embedded}=0 
       \toggletrue{isEmbed}
       \toggletrue{isSoft}
-  }{}
-  
-  \ifstrequal{\jobtype}{software}{\toggletrue{isSoft}}{}
-  
-  % Mechatronics generally overlaps across the board
-  \ifstrequal{\jobtype}{mechatronics}{
+  \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{software}=0 \toggletrue{isSoft} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{mechatronics}=0 
       \toggletrue{isMech}
       \toggletrue{isElec}
       \toggletrue{isEmbed}
       \toggletrue{isSoft}
-  }{}
+  \fi
 \else
-  % Default behavior if NO flag is provided (e.g., compile a master copy)
+  % Default if compiled without flags
   \toggletrue{isMech}
   \toggletrue{isElec}
   \toggletrue{isEmbed}
   \toggletrue{isSoft}
 \fi
-
 % Helper command for easier reading in content files
 % Usage: \showfor{isSoft}{This bullet point only shows if isSoft is true.}
 \newcommand{\showfor}[2]{\iftoggle{#1}{#2}{}}
@@ -106,6 +103,18 @@
 
 % \quote{``Be the change that you want to see in the world."}
 
+% Global layout tweaks
+\usepackage{enumitem}
+\usepackage{needspace}
+
+% This targets the lists inside your experience to be tight but not overlapping
+\setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt, labelsep=1.5ex}
+
+\makecvfooter%
+  {\today{}}
+  {Jacob Church~~~·~~~CV}
+  {\thepage{}}
+
 %-------------------------------------------------------------------------------
 \begin{document}
 
@@ -119,15 +128,10 @@
 %-------------------------------------------------------------------------------
 \input{CV/personal_statement.tex}
 \input{CV/experience.tex}
-\input{CV/achievements.tex}
-\input{CV/projects.tex}
-\input{CV/education.tex}
 \input{CV/skills.tex}
-
-\makecvfooter
-  {\today}
-  {Jacob Church~~~·~~~CV}
-  {\thepage}
+\input{CV/achievements.tex}
+\input{CV/education.tex}
+\input{CV/projects.tex}
 
 
 %-------------------------------------------------------------------------------

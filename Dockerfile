@@ -13,6 +13,6 @@ RUN sudo apt-get update && sudo apt-get install \
     sudo apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/*
 
-# Set the shell to zsh
-RUN chsh -s /bin/zsh
-SHELL ["/bin/zsh", "-c"]
+# Set the shell to bash
+RUN chsh -s /bin/bash
+SHELL ["/bin/bash", "-c"]
