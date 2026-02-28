@@ -48,15 +48,15 @@
 % Read the command line flag and flip the appropriate toggles
 \ifdefined\jobtype%
   \edef\expandedjobtype{\jobtype} % Force expansion
-  
+
   \ifnum\pdfstrcmp{\expandedjobtype}{mech}=0 \toggletrue{isMech} \fi
   \ifnum\pdfstrcmp{\expandedjobtype}{electrical}=0 \toggletrue{isElec} \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{embedded}=0 
+  \ifnum\pdfstrcmp{\expandedjobtype}{embedded}=0
       \toggletrue{isEmbed}
       \toggletrue{isSoft}
   \fi
   \ifnum\pdfstrcmp{\expandedjobtype}{software}=0 \toggletrue{isSoft} \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{mechatronics}=0 
+  \ifnum\pdfstrcmp{\expandedjobtype}{mechatronics}=0
       \toggletrue{isMech}
       \toggletrue{isElec}
       \toggletrue{isEmbed}

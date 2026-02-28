@@ -9,10 +9,10 @@ for JOB in "${JOB_TYPES[@]}"; do
     echo "-------------------------------------------------------"
     echo "Building CV for: $JOB"
     echo "-------------------------------------------------------"
-    
+
     xelatex -8bit -halt-on-error -jobname="Jacob_Church_CV_$JOB" -output-directory=builds \
     "\\def\\jobtype{$JOB} \\input{CV.tex}"
-    
+
     # Generate PNG from the Mechatronics version specifically
     if [ "$JOB" == "mechatronics" ]; then
         pdftoppm -png -singlefile "builds/Jacob_Church_CV_$JOB.pdf" "Jacob_Church_CV_Preview"

@@ -587,7 +587,7 @@
 % --- SECTION ---
 \newcommand{\cvsection}[1]{%
   \par\addvspace{\acvSectionTopSkip}
-  \needspace{25mm} 
+  \needspace{25mm}
   \sectionstyle{#1}
   \phantomsection
   \color{sectiondivider}\vhrulefill{0.9pt}
@@ -618,7 +618,7 @@
 \newenvironment{cventries}{%
   \vspace{\acvSectionContentTopSkip}
   % Removed itemize to prevent extra left margins/spacing
-  \begin{flushleft} 
+  \begin{flushleft}
 }{%
   \end{flushleft}
 }
@@ -636,9 +636,9 @@
         {\entrytitlestyle{\fontsize{11.5pt}{1em}\selectfont#2} & \entrylocationstyle{#3} \\
         \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
     \end{tabular*}
-    \vspace{-2.5mm} 
+    \vspace{-2.5mm}
     \descriptionstyle{#5}
-    \vspace{1mm} 
+    \vspace{1mm}
   \end{minipage}
   \par
   \vspace{0.5mm}
@@ -713,7 +713,7 @@
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep, topsep=0pt, partopsep=0pt]
     \setlength{\parskip}{0pt}
     \renewcommand{\labelitemi}{\bullet}
-    \@itempenalty=5000 
+    \@itempenalty=5000
 }{%
   \end{itemize}
   \end{justify}

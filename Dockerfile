@@ -1,4 +1,4 @@
-FROM ghcr.io/Jank-Jacob/dotfiles:latest
+FROM ghcr.io/jank-jacob/dotfiles:latest
 
 # Install everything required to build the cv.
 RUN sudo apt-get update && sudo apt-get install \
