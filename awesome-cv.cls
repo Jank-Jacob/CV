@@ -587,12 +587,12 @@
 % --- SECTION ---
 \newcommand{\cvsection}[1]{%
   \par\addvspace{\acvSectionTopSkip}
-  \needspace{25mm}
+  \needspace{32mm} % Increased to ensure header stays with the first entry
   \sectionstyle{#1}
   \phantomsection
   \color{sectiondivider}\vhrulefill{0.9pt}
-  \nopagebreak[4]
   \vspace{1mm}
+  \nopagebreak[4] % Forces header to stay with the entry
 }
 
 % Define a subsection for CV
@@ -624,25 +624,28 @@
 }
 
 % --- ENTRIES ---
+% --- UNIVERSAL ENTRY COMMAND ---
 \newcommand*{\cventry}[5]{%
-  \vspace{1.5mm}
-  \needspace{20mm}
-  \begin{minipage}{\textwidth}
-    \setlength\tabcolsep{0pt}
-    \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-      \ifempty{#2#3}
-        {\entrypositionstyle{\fontsize{11.5pt}{1em}\selectfont#1} & \entrydatestyle{#4} \\}
-        {\entrytitlestyle{\fontsize{11.5pt}{1em}\selectfont#2} & \entrylocationstyle{#3} \\
-        \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \end{tabular*}
-    \vspace{-2.5mm}
+  \vspace{2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      % Education/General Style: Argument 1 is the main bold title
+      {\entrytitlestyle{\fontsize{11.5pt}{1em}\selectfont#1} & \entrydatestyle{#4} \\}
+      {%
+        % Experience Style: Argument 2 is Title/Company, Argument 1 is the Sub-description
+        \entrytitlestyle{\fontsize{11.5pt}{1em}\selectfont#2} & \entrylocationstyle{#3} \\
+        \entrypositionstyle{#1} & \entrydatestyle{#4} \\
+      }
+  \end{tabular*}
+  \ifempty{#5}{}{%
+    \vspace{-2.0mm}
     \descriptionstyle{#5}
-    \vspace{1mm}
-  \end{minipage}
-  \par
-  \vspace{0.5mm}
+  }
+  \par\addvspace{1.0mm}
 }
+
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
   \begin{center}
@@ -732,7 +735,7 @@
 % Define a section for the cover letter
 % Usage: \lettersection{<section-title>}
 \newcommand{\lettersection}[1]{%
-\par\addvspace{2.5ex}
+\par\addvspace{2.0ex}
 \phantomsection{}
 \lettersectionstyle{#1}
 \color{sectiondivider}\vhrulefill{0.9pt}
@@ -743,7 +746,7 @@
 % Define a title of the cover letter
 % Usage: \makelettertitle
 \newcommand*{\makelettertitle}{%
-\vspace{8.4mm}
+\vspace{0mm}
 \setlength\tabcolsep{0pt}
 \setlength{\extrarowheight}{0pt}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}

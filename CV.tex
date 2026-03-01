@@ -14,6 +14,9 @@
 % Uncomment if you would like to specify your own color
 \definecolor{awesome}{HTML}{00aeef}
 
+% Pull in the shared brain
+\input{shared_configs.tex}
+
 % Colors for text
 % Uncomment if you would like to specify your own color
 % \definecolor{darktext}{HTML}{414141}
@@ -28,98 +31,14 @@
 % If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 
-
-
-%-------------------------------------------------------------------------------
-% CONDITIONAL COMPILATION TOGGLES
-%-------------------------------------------------------------------------------
-% Define toggles for each specific job type
-\newtoggle{isMech}
-\newtoggle{isElec}
-\newtoggle{isEmbed}
-\newtoggle{isSoft}
-
-% Set default state - show nothing
-\togglefalse{isMech}
-\togglefalse{isElec}
-\togglefalse{isEmbed}
-\togglefalse{isSoft}
-
-% Read the command line flag and flip the appropriate toggles
-\ifdefined\jobtype%
-  \edef\expandedjobtype{\jobtype} % Force expansion
-
-  \ifnum\pdfstrcmp{\expandedjobtype}{mech}=0 \toggletrue{isMech} \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{electrical}=0 \toggletrue{isElec} \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{embedded}=0
-      \toggletrue{isEmbed}
-      \toggletrue{isSoft}
-  \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{software}=0 \toggletrue{isSoft} \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{mechatronics}=0
-      \toggletrue{isMech}
-      \toggletrue{isElec}
-      \toggletrue{isEmbed}
-      \toggletrue{isSoft}
-  \fi
-\else
-  % Default if compiled without flags
-  \toggletrue{isMech}
-  \toggletrue{isElec}
-  \toggletrue{isEmbed}
-  \toggletrue{isSoft}
-\fi
-% Helper command for easier reading in content files
-% Usage: \showfor{isSoft}{This bullet point only shows if isSoft is true.}
-\newcommand{\showfor}[2]{\iftoggle{#1}{#2}{}}
-
-
-%-------------------------------------------------------------------------------
-%	PERSONAL INFORMATION
-%	Comment any of the lines below if they are not required
-%-------------------------------------------------------------------------------
-% Available options: circle|rectangle,edge/noedge,left/right
-% \photo[rectangle,edge,right]{profile}
-\name{Jacob}{Church}
-\position{Mechatronics Engineer}
-\address{Kingston, Wellington, New Zealand}
-
-\mobile{(+64) 21 056 7154}
-\email{jacobchurch.jjc@gmail.com}
-% \homepage{jacob-church.com}
-% \github{Jank-Jacob}
-\linkedin{jacobjchurch}
-% \gitlab{gitlab-id}
-% \stackoverflow{SO-id}{SO-name}
-% \twitter{@twit}
-% \skype{skype-id}
-% \reddit{reddit-id}
-% \medium{madium-id}
-% \kaggle{kaggle-id}
-% \googlescholar{googlescholar-id}{name-to-display}
-%% \firstname and \lastname will be used
-% \googlescholar{googlescholar-id}{}
-% \extrainfo{extra information}
-
-% \quote{``Be the change that you want to see in the world."}
-
-% Global layout tweaks
 \usepackage{enumitem}
 \usepackage{needspace}
-
-% This targets the lists inside your experience to be tight but not overlapping
 \setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt, labelsep=1.5ex}
 
-\makecvfooter%
-  {\today{}}
-  {Jacob Church~~~·~~~CV}
-  {\thepage{}}
+\makecvfooter{\today}{Jacob Church · CV}{\thepage}
 
-%-------------------------------------------------------------------------------
 \begin{document}
-
-% Print the header with above personal information
-% Give optional argument to change alignment(C: center, L: left, R: right)
+% Print the header with shared config personal information
 \makecvheader[C]
 
 %-------------------------------------------------------------------------------

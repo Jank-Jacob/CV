@@ -1,0 +1,97 @@
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% A4 paper size by default, use 'letterpaper' for US letter
+\documentclass[11pt, a4paper]{awesome-cv}
+
+\geometry{left=1.9cm, top=.5cm, right=1.9cm, bottom=1.4cm, footskip=.5cm}
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+% \colorlet{awesome}{awesome-skyblue}
+% Uncomment if you would like to specify your own color
+\definecolor{awesome}{HTML}{00aeef}
+
+% Colors for text
+% Uncomment if you would like to specify your own color
+% \definecolor{darktext}{HTML}{414141}
+% \definecolor{text}{HTML}{333333}
+% \definecolor{graytext}{HTML}{5D5D5D}
+% \definecolor{lighttext}{HTML}{999999}
+% \definecolor{sectiondivider}{HTML}{5D5D5D}
+
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{true}
+
+% Pull in the specific job details - avoids needing to edit this file
+\IfFileExists{CoverLetter/job_details.tex}{%
+  \input{CoverLetter/job_details.tex}
+}{%
+  \input{CoverLetter/job_details.example.tex}
+}
+
+% Pull in the shared configs - logic toggles and information
+\input{shared_configs.tex}
+
+% --- OVERRIDE AWESOME-CV DEFAULTS ---
+\makeatletter
+
+% 1. Unified Font Styles
+\renewcommand*{\recipienttitlestyle}[1]{{\fontsize{10pt}{1.2em}\bodyfont\bfseries\color{black} #1}}
+\renewcommand*{\recipientaddressstyle}[1]{{\fontsize{10pt}{1.2em}\bodyfont\color{black} #1}}
+\renewcommand*{\letterdatestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{black} #1\/}}
+
+% 2. Redefine \makelettertitle for ultra-tight grouping
+\renewcommand*{\makelettertitle}{%
+  % Gap between your CV Header and the Start of the Letter
+  \vspace{6mm}
+
+  % 1. The Date
+  {\letterdatestyle{\@letterdate}\par}
+
+  % 2. No gap between Date and Company Name
+  \nointerlineskip%
+  \vspace{1mm} % Minimal breathing room
+  {\recipienttitlestyle{\@recipientname}\par}
+
+  % 3. No gap between Company Name and Address lines
+  \nointerlineskip%
+  {\raggedright\recipientaddressstyle{\@recipientaddress}\par}
+
+  % 4. Tight gap before the Subject Line (Reduced from 6mm)
+  \vspace{3mm}
+  \ifthenelse{\isundefined{\@lettertitle}}
+    {}
+    {{\lettertitlestyle{\@lettertitle}\par}}
+
+  % 5. Small gap before "Dear Hiring Manager"
+  \vspace{2mm}
+  \lettertextstyle{\@letteropening}
+}
+\makeatother
+
+
+%Prevent words being broken or hyphenated across lines
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% Letter specific info - change "Company Name" per application
+\recipient{\companyName}{\companyAddress}
+\letterdate{\today}
+
+\lettertitle{Application for \jobTitle}
+\letteropening{Dear Hiring Manager,}
+\letterclosing{Sincerely,}
+
+\begin{document}
+\makecvheader[C]
+\makelettertitle%
+
+\begin{cvletter}
+    \input{CoverLetter/opening.tex}
+    \input{CoverLetter/evidence.tex}
+    \input{CoverLetter/closing.tex}
+\end{cvletter}
+
+\makeletterclosing%
+\end{document}

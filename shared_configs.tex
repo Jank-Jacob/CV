@@ -1,0 +1,65 @@
+% --- IDENTITY ---
+\name{Jacob}{Church}
+\address{Kingston, Wellington, New Zealand}
+\mobile{(+64) 21 056 7154}
+\email{jacobchurch.jjc@gmail.com}
+\linkedin{jacobjchurch}
+% \homepage{jacob-church.com}
+% \github{Jank-Jacob}
+% \gitlab{gitlab-id}
+% \stackoverflow{SO-id}{SO-name}
+% \twitter{@twit}
+% \skype{skype-id}
+% \reddit{reddit-id}
+% \medium{madium-id}
+% \kaggle{kaggle-id}
+% \googlescholar{googlescholar-id}{name-to-display}
+%% \firstname and \lastname will be used
+% \googlescholar{googlescholar-id}{}
+% \extrainfo{extra information}
+
+% \quote{``Be the change that you want to see in the world."}
+
+% --- POSITION LOGIC ---
+\position{%
+  \iftoggle{isMech}{Mechatronics Engineer}{%
+    \iftoggle{isElec}{Electrical Engineer}{%
+      \iftoggle{isSoft}{Software Engineer}{Mechatronics Engineer}%
+    }%
+  }%
+}
+
+% --- TOGGLE DEFINITIONS ---
+\newtoggle{isMech}
+\newtoggle{isElec}
+\newtoggle{isEmbed}
+\newtoggle{isSoft}
+
+\togglefalse{isMech}
+\togglefalse{isElec}
+\togglefalse{isEmbed}
+\togglefalse{isSoft}
+
+\ifdefined\jobtype%
+  \edef\expandedjobtype{\jobtype}
+  \ifnum\pdfstrcmp{\expandedjobtype}{mech}=0 \toggletrue{isMech} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{electrical}=0 \toggletrue{isElec} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{embedded}=0
+      \toggletrue{isEmbed}
+      \toggletrue{isSoft}
+  \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{software}=0 \toggletrue{isSoft} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{mechatronics}=0
+      \toggletrue{isMech}
+      \toggletrue{isElec}
+      \toggletrue{isEmbed}
+      \toggletrue{isSoft}
+  \fi
+\else
+  \toggletrue{isMech}
+  \toggletrue{isElec}
+  \toggletrue{isEmbed}
+  \toggletrue{isSoft}
+\fi
+
+\newcommand{\showfor}[2]{\iftoggle{#1}{#2}{}}

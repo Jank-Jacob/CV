@@ -3,6 +3,10 @@
 *.pdf
 *.png
 
+# Job Details
+CoverLetter/job_details.tex
+!CoverLetter/job_details.example.tex
+
 # LaTeX junk
 *.aux
 *.fls

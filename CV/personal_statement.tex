@@ -1,5 +1,25 @@
 \begin{cvparagraph}
-  Mechatronics Engineer with experience in integrated robotic, electromechanical,
-  and Linux-based systems. I bridge disciplines to deliver well-designed,
-  production-ready solutions from concept through to hardware-in-the-loop validation.
+  \iftoggle{isMech}{%
+    % SHOW FOR: Mechatronics OR Mechanical
+    Mechatronics Engineer with experience in \textbf{integrated robotic, electromechanical,
+    and Linux-based systems}. I bridge disciplines to deliver well-designed,
+    production-ready solutions from concept through to hardware-in-the-loop validation.
+  }{%
+    \iftoggle{isElec}{%
+      % SHOW FOR: Electrical
+      Mechatronics Engineer with experience in \textbf{integrated robotic, electromechanical,
+      and Linux-based systems}. I bridge disciplines to deliver well-designed,
+      production-ready solutions from concept through to hardware-in-the-loop validation.
+    }{%
+      \iftoggle{isSoft}{%
+        % SHOW FOR: Software OR Embedded
+        Software-focused Mechatronics Engineer specializing in \textbf{Linux-based systems, architecture, and robust SDLC practices}.
+        I bridge the gap between high-level application logic and hardware to deliver production-ready, scalable solutions.
+        Experienced in developing low-latency C++ libraries, hardware testing software and CI/CD automation.
+      }{%
+        % FALLBACK: If nothing is set
+        Mechatronics Engineer experienced in delivering integrated robotic, electromechanical, and Linux-based solutions.
+      }
+    }
+  }
 \end{cvparagraph}
