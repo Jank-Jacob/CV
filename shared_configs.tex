@@ -24,7 +24,9 @@
 \position{%
   \iftoggle{isMech}{Mechatronics Engineer}{%
     \iftoggle{isElec}{Electrical Engineer}{%
-      \iftoggle{isSoft}{Software Engineer}{Mechatronics Engineer}%
+      \iftoggle{isEmbed}{Embedded Software Engineer}{%
+        \iftoggle{isSoft}{Software Engineer}{Mechatronics Engineer}%
+      }%
     }%
   }%
 }
@@ -62,4 +64,6 @@
   \toggletrue{isSoft}
 \fi
 
+% Note: isEmbed intentionally enables isSoft — embedded builds include all software content.
 \newcommand{\showfor}[2]{\iftoggle{#1}{#2}{}}
+\newcommand{\showforany}[3]{\ifboolexpr{togl{#1} or togl{#2}}{#3}{}}
