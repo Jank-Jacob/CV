@@ -25,3 +25,5 @@ CoverLetter/job_details.tex
 !Dockerfile
 !.devcontainer/
 !.github/
+
+.vscode/settings.json
