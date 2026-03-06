@@ -57,11 +57,11 @@
   % 5. Small gap before "Dear Hiring Manager"
   \vspace{2mm}
   % Salutation
-  \lettertextstyle{\@letteropening}
+  \lettertextstyle{\@letteropening}\par\vspace{1mm}
 }
 % 3. Tight gap between "Sincerely," and name
 \renewcommand*{\makeletterclosing}{%
-  \vspace{2mm}
+\par\vspace{4mm}
   \lettertextstyle{\@letterclosing}\\[2mm]
   \lettertextstyle{\@firstname\ \@lastname}
   \par
@@ -76,7 +76,7 @@
 \recipient{\companyName}{\companyAddress}
 \letterdate{\today}
 \lettertitle{Application for \jobTitle}
-\letteropening{Dear Hiring Manager,\\}
+\letteropening{Dear Hiring Manager,}
 \letterclosing{Sincerely,}
 
 \makecvfooter{\today}{Jacob Church · Cover Letter}{\thepage}
