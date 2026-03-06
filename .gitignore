@@ -1,16 +1,16 @@
-# Ignore build artifacts
+# Build artifacts
 /builds/
 *.pdf
 *.png
 
-# Job Details
-CoverLetter/*
-!CoverLetter/job_details.example.tex
-!CoverLetter/opening_example.tex
-!CoverLetter/evidence_example.tex
-!CoverLetter/closing_example.tex
+# Block all cover letter job folders by default (they contain private job details)
+CoverLetter/*/
 
-# LaTeX junk
+# Explicitly allow the example folder (committed as a template + built by CI)
+!CoverLetter/example/
+!CoverLetter/example/**
+
+# LaTeX auxiliary files
 *.aux
 *.fls
 *.log
@@ -21,12 +21,11 @@ CoverLetter/*
 *.xml
 *.bcf
 
-# Source files to KEEP (Explicitly)
+# Source files to KEEP
 !CV.tex
-!coverletter.tex
+!CL.tex
 !build.sh
 !Dockerfile
 !.devcontainer/
 !.github/
-
 .vscode/settings.json

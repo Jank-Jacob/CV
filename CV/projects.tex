@@ -1,67 +1,24 @@
+% =============================================================================
+% CV/projects.tex
+%
+% Loads project entries in order defined by \projectorder.
+% Override in job_details.tex to reorder or surface specific projects, e.g.,:
+%   \def\projectorder{fsae,vex,cnc,intake}
+%
+% Available entries:
+%   vex, fsae, cnc, intake
+%
+% Note: intake is wrapped in \showfor{isMech} inside its own file —
+% it will silently produce nothing on non-mech builds regardless of ordering.
+% =============================================================================
+
+\ifdefined\projectorder\else
+  \def\projectorder{vex,intake,fsae,cnc}
+\fi
+
 \cvsection{Relevant Projects}
 \begin{cventries}
-  \cventry%
-    {Lead Engineer \& Team Captain}
-    {VEX \& VEXU Robotics Competition}
-    {Global / New Zealand}
-    {2016 --- 2024}
-    {
-      \begin{cvitems}
-        \item {Led design, fabrication, and programming for the \textbf{2023 VEXU World Championship Excellence Award} winning team.}
-        \showfor{isMech}{
-          \item {Manufactured high-precision robot chassis from sheet aluminium using CNC routers and custom 3D-printed components.}
-        }
-        \ifboolexpr{togl {isSoft} or togl {isEmbed}}{
-          \item {Developed custom motion control algorithms and sensor fusion for autonomous navigation for single robot and 2vs2 match formats.}
-        }{}
-        \item {Managed the team and processes including CAD version control and \textbf{hardware-in-the-loop testing cycles}.}
-      \end{cvitems}
-    }
-  \showfor{isMech}{
-    \cventry%
-      {Contract Fabricator}
-      {Custom Air Intake Adaptor}
-      {Personal Commission}
-      {2024}
-      {
-        \begin{cvitems}
-          \item {Engineered a bespoke 6061-T6 aluminium interface block to adapt a performance engine to an existing intake manifold.}
-          \item {Completed measurements, SolidWorks design, \textbf{HSMWorks CAM pathing}, and \textbf{3-axis CNC machining.}}
-        \end{cvitems}
-      }
-  }
-\cventry%
-    {Electronics \& HV Systems --- Wiring Harness Developer}
-    {Formula SAE --- University of Auckland Racing}
-    {Wellington / Auckland, NZ}
-    {2022 --- 2023}
-    {
-      \begin{cvitems}
-        \item {Contributed to the \textbf{2022 Australasian Championship} winning vehicle as part of the electronics and high-voltage team.}
-        \item {Designed and built the vehicle wiring harness using \textbf{Autodesk Inventor}; led the team's transition from a monolithic harness to a \textbf{modular architecture with breakout boxes}, separating systems to improve fault isolation and development cycle speed.}
-        \item {Advocated for and implemented the modular redesign following a short-circuit failure that invalidated the entire previous harness — the new architecture eliminated that class of failure and reduced harness rework time significantly.}
-        \showfor{isMech}{
-          \item {Managed mechanical routing, mounting, and connector selection across high and low voltage domains, adhering to strict FSAE electrical safety regulations.}
-        }
-        \showfor{isElec}{
-          \item {Performed HV segment assembly, grounding architecture, and system-level electrical validation against FSAE safety standards.}
-        }
-      \end{cvitems}
-    }
-  \cventry%
-    {Designer \& Builder}
-    {Self-Built 3-Axis CNC Router}
-    {Personal Project}
-    {2022 --- 2023}
-    {
-      \begin{cvitems}
-        \item {Constructed a 0.1mm precision 3-axis CNC router capable of machining 6061-T6 aluminium for VEXU and personal clients.}
-        \showfor{isMech}{
-          \item {Integrated a 2.2kW water-cooled spindle and managed the mechanical alignment of the $970 \times 610$mm work area.}
-        }
-        \showfor{isSoft}{
-          \item {Configured GRBL-based control systems and optimised CAM toolpaths for efficient material removal and surface finish.}
-        }
-      \end{cvitems}
-    }
+  \makeatletter
+  \@for\entry:=\projectorder\do{\input{CV/projects/\entry.tex}}
+  \makeatother
 \end{cventries}

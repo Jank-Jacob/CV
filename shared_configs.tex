@@ -1,37 +1,54 @@
+% =============================================================================
+% shared_configs.tex
+% Shared identity, toggle logic, and helper commands.
+% Sourced by both CV.tex and CL.tex.
+% =============================================================================
+
 % --- IDENTITY ---
 \name{Jacob}{Church}
 \address{Kingston, Wellington, New Zealand}
 \mobile{(+64) 21 056 7154}
 \email{jacobchurch.jjc@gmail.com}
 \linkedin{jacobjchurch}
-% \homepage{jacob-church.com}
-% \github{Jank-Jacob}
-% \gitlab{gitlab-id}
-% \stackoverflow{SO-id}{SO-name}
-% \twitter{@twit}
-% \skype{skype-id}
-% \reddit{reddit-id}
-% \medium{madium-id}
-% \kaggle{kaggle-id}
-% \googlescholar{googlescholar-id}{name-to-display}
-%% \firstname and \lastname will be used
-% \googlescholar{googlescholar-id}{}
-% \extrainfo{extra information}
 
-% \quote{``Be the change that you want to see in the world."}
+% ---------------------------------------------------------------------------
+% Override identity fields for specific job contexts.
+% job_details.tex can redefine \cvaddress, \cvmobile etc. before this file
+% is loaded — but since awesome-cv uses \address etc. directly, we allow
+% job_details to call \renewcommand{\cvaddressoverride}{...} and we apply
+% them here.
+%
+% Supported overrides (define in job_details.tex if needed):
+%   \def\regionoverride{au}        — adds AU working rights line to header
+%   \def\addressoverride{...}      — replaces address in header
+% ---------------------------------------------------------------------------
+\ifdefined\regionoverride%
+  \ifnum\pdfstrcmp{\regionoverride}{au}=0
+    \ifdefined\addressoverride%
+      \address{\addressoverride{} \\ NZ Citizen --- Full Australian Working Rights}
+    \else
+      \address{Kingston, Wellington, New Zealand \\ NZ Citizen --- Full Australian Working Rights}
+    \fi
+  \fi
+  \ifnum\pdfstrcmp{\regionoverride}{nz}=0
+    \ifdefined\addressoverride%
+      \address{\addressoverride{} \\ Full NZ Working Rights}
+    \else
+      \address{Kingston, Wellington, New Zealand}
+      % No annotation needed for NZ roles — address speaks for itself
+    \fi
+  \fi
+\else
+  \ifdefined\addressoverride%
+    \address{\addressoverride}
+  \fi
+\fi
 
-% --- POSITION LOGIC ---
-\position{%
-  \iftoggle{isMech}{Mechatronics Engineer}{%
-    \iftoggle{isElec}{Electrical Engineer}{%
-      \iftoggle{isEmbed}{Embedded Software Engineer}{%
-        \iftoggle{isSoft}{Software Engineer}{Mechatronics Engineer}%
-      }%
-    }%
-  }%
-}
-
-% --- TOGGLE DEFINITIONS ---
+% ---------------------------------------------------------------------------
+% TOGGLE DEFINITIONS
+% Note: isEmbed intentionally also enables isSoft.
+% Embedded builds include all software content, plus hardware-specific items.
+% ---------------------------------------------------------------------------
 \newtoggle{isMech}
 \newtoggle{isElec}
 \newtoggle{isEmbed}
@@ -44,26 +61,61 @@
 
 \ifdefined\jobtype%
   \edef\expandedjobtype{\jobtype}
-  \ifnum\pdfstrcmp{\expandedjobtype}{mech}=0 \toggletrue{isMech} \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{electrical}=0 \toggletrue{isElec} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{mech}=0       \toggletrue{isMech} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{electrical}=0  \toggletrue{isElec} \fi
   \ifnum\pdfstrcmp{\expandedjobtype}{embedded}=0
-      \toggletrue{isEmbed}
-      \toggletrue{isSoft}
+    \toggletrue{isEmbed}
+    \toggletrue{isSoft}   % isEmbed implies isSoft
   \fi
-  \ifnum\pdfstrcmp{\expandedjobtype}{software}=0 \toggletrue{isSoft} \fi
+  \ifnum\pdfstrcmp{\expandedjobtype}{software}=0    \toggletrue{isSoft} \fi
   \ifnum\pdfstrcmp{\expandedjobtype}{mechatronics}=0
-      \toggletrue{isMech}
-      \toggletrue{isElec}
-      \toggletrue{isEmbed}
-      \toggletrue{isSoft}
+    \toggletrue{isMech}
+    \toggletrue{isElec}
+    \toggletrue{isEmbed}
+    \toggletrue{isSoft}
   \fi
 \else
+  % No jobtype defined — show everything (pipeline generic build)
   \toggletrue{isMech}
   \toggletrue{isElec}
   \toggletrue{isEmbed}
   \toggletrue{isSoft}
 \fi
 
-% Note: isEmbed intentionally enables isSoft — embedded builds include all software content.
+% ---------------------------------------------------------------------------
+% POSITION LABEL
+% isEmbed is checked before isSoft — since isEmbed also sets isSoft, without
+% this ordering embedded builds would always resolve to "Software Engineer".
+% ---------------------------------------------------------------------------
+\position{%
+  \iftoggle{isMech}{Mechatronics Engineer}{%
+    \iftoggle{isElec}{Electrical Engineer}{%
+      \iftoggle{isEmbed}{Embedded Software Engineer}{%
+        \iftoggle{isSoft}{Software Engineer}{Mechatronics Engineer}%
+      }%
+    }%
+  }%
+}
+
+% ---------------------------------------------------------------------------
+% HELPER COMMANDS
+% ---------------------------------------------------------------------------
+
+% Show content only if a single toggle is true
 \newcommand{\showfor}[2]{\iftoggle{#1}{#2}{}}
+
+% Show content if either of two toggles is true
+% Usage: \showforany{toggleA}{toggleB}{content}
 \newcommand{\showforany}[3]{\ifboolexpr{togl{#1} or togl{#2}}{#3}{}}
+
+% ---------------------------------------------------------------------------
+% SKILL ORDERING
+% By default, SolidWorks leads. If \inventorfirst is defined in job_details,
+% Inventor is listed first instead. Define in job_details.tex as:
+%   \def\inventorfirst{1}
+% ---------------------------------------------------------------------------
+\ifdefined\inventorfirst%
+  \newcommand{\cadskills}{Autodesk Inventor, SolidWorks, HSMWorks CAM}
+\else
+  \newcommand{\cadskills}{SolidWorks, Autodesk Inventor, HSMWorks CAM}
+\fi

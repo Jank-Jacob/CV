@@ -1,0 +1,41 @@
+\cventry%
+    {A Startup Focused On Home Tidying Robots for Parents.}
+    {Mechatronics Engineer --- Production \& Integration \textnormal{--- Clutterbot}}
+    {Wellington, New Zealand}
+    {May 2024 --- Present}
+    {
+      \begin{cvitems}
+        \item {Technical interface across mechanical, electrical, embedded firmware, Linux/driver, platform engineering, cloud/mobile, robot perception, and QA teams --- Wellington and Bangalore.}
+        \item {Directly \textbf{managing technicians and interns} across assembly, hardware testing, and smart-home integration.}
+        \item {Fault finding and system validation across the full stack --- sole QA engineer in the Wellington office.}
+        \showfor{isSoft}{
+          \begin{itemize}[leftmargin=3ex, nosep, noitemsep, topsep=1pt, label=\textendash]
+            \item {Streamlined deployment via \textbf{Debianisation and CI/CD}, cutting installation time from one week to two hours.}
+            \item {Developed a \textbf{bespoke C++ communication library} and API for Linux to microcontroller comms.}
+            \item {Built \textbf{remote access infrastructure} (VPNs, SSH) for cross-site robot diagnostics and control.}
+          \end{itemize}
+        }
+        \ifboolexpr{togl{isEmbed} or togl{isElec}}{
+          \begin{itemize}[leftmargin=3ex, nosep, noitemsep, topsep=1pt, label=\textendash]
+            \item {Authored firmware and control modifications for \textbf{STM32 microcontrollers}, improving sensor data acquisition.}
+            \item {Refined \textbf{CI/CD pipelines} for embedded source code, ensuring reproducible, well-versioned builds.}
+          \end{itemize}
+        }{}
+        \showforany{isSoft}{isEmbed}{
+          \begin{itemize}[leftmargin=3ex, nosep, noitemsep, topsep=1pt, label=\textendash]
+            \item {Utilised \textbf{Systemd services} for automated processes and hardware driver management.}
+            \item {Modified \textbf{Linux kernel drivers} and hardware abstraction layers for a bespoke OS and hardware.}
+            \item {Architected automated bootstrapping ensuring fleet-wide software consistency.}
+            \item {Developed \textbf{robot vision} and control packages using \textbf{C++, Python, and ROS2}.}
+          \end{itemize}
+        }
+        \showfor{isMech}{
+          \begin{itemize}[leftmargin=3ex, nosep, noitemsep, topsep=1pt, label=\textendash]
+            \item {Developed parts and jigs using \textbf{SolidWorks with 3D Experience} and \textbf{Onshape}.}
+            \item {Designed and operated \textbf{HALT rigs} for accelerated lifecycle testing of actuators and gearboxes.}
+            \item {Identified mechanical design flaws and improved assembly reproducibility through custom jigs.}
+            \item {Developed standardised production processes and inventory management systems.}
+          \end{itemize}
+        }
+      \end{cvitems}
+    }

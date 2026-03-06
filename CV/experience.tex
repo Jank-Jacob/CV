@@ -1,80 +1,21 @@
+% =============================================================================
+% CV/experience.tex
+%
+% Loads experience entries in order defined by \experienceorder.
+% Override in job_details.tex to reorder or hide entries, e.g.,:
+%   \def\experienceorder{clutterbot,fraser,sixthsense,vexreferee}
+%
+% Available entries:
+%   clutterbot, frasergear, sixthsense, vexreferee
+% =============================================================================
+
+\ifdefined\experienceorder\else
+  \def\experienceorder{clutterbot,frasergear,sixthsense,vexreferee}
+\fi
+
 \cvsection{Experience}
-
 \begin{cventries}
-  \cventry%
-  {A Startup Focused On Home tidying Robots for Parents.} % Argment 1: Company Description
-  {Mechatronics Engineer --- Production \& Integration \textnormal{--- Clutterbot}} % Argument 2: TITLE (Bold) then COMPANY (Normal)
-  {Wellington, New Zealand}
-  {May 2024 --- Present}
-  {
-    \begin{cvitems}
-      \item {Delivered across mechanical, embedded, and software domains simultaneously, owning end-to-end technical delivery in a fast-moving startup environment.}
-      \item {Collaborated closely with interdisciplinary teams across Wellington and Bangalore, bridging communication between hardware, software, and operations.}
-      \item {Directly \textbf{managing technicians and interns}, in assembly, hardware testing and smart home integration.}
-      \item {Led end-to-end Quality Assurance (QA) and system validation for mechanical and software systems.}
-      \showfor{isSoft}{
-        \item {Streamlined software deployment by implementing Debianisation and CI/CD pipelines, reducing installation time from one week to two hours.}
-        \item {Developed a \textbf{bespoke C++ communication library} and API for Linux to microcontroller comms.}
-        \item {Implemented remote diagnostic and observation procedures for robots, using \textbf{VPNs and SSH}.}
-      }
-      \ifboolexpr{togl {isEmbed} or togl {isElec}}{
-        \item {Authored firmware and control modifications for \textbf{STM32 microcontrollers}, improving sensor data acquisition.}
-        \item {Refined \textbf{CI/CD pipelines} for embedded source code, ensuring reproducible, well-versioned builds.}
-        \item {Performed fault finding across the entire system stack, from PCBs to mobile/cloud infrastructure protocols.}
-      }{}
-      \ifboolexpr{togl {isSoft} or togl {isEmbed}}{
-        \item {Utilised custom \textbf{Systemd services} for automated processes and hardware driver management.}
-        \item {Modified Linux kernel drivers and hardware abstraction layers for a bespoke OS and hardware.}
-        \item {Architected automated bootstrapping procedures for new hardware, replacing lengthy,
-              tedious manual configuration and ensuring fleet-wide software consistency.}
-        \item {Developed and improved \textbf{robot vision} and control packages using \textbf{C++, Python, and ROS2}.}
-      }{}
-      \showfor{isMech}{
-        \item {Developed various parts and jigs using \textbf{SolidWorks with 3D Experience} and \textbf{Onshape}.}
-        \item {Designed and operated Highly Accelerated Lifecycle Testing \textbf{(HALT)} rigs for actuators and gearboxes.}
-        \item {Identified and rectified mechanical design flaws, and with assembly jigs improved reproducibility.}
-        \item {Developed standardised production processes and inventory management systems.}
-      }
-      \item {Utilised \textbf{Jira and GitLab} integrations for project management and issue tracking.}
-    \end{cvitems}
-  }
-  \cventry%
-    {Providing bespoke machinery and equipment for orchardists, horticulturalists and the kiwifruit industry.}
-    {Mechatronics Engineering Intern \textnormal{--- Fraser Gear}}
-    {Te Puke, NZ}
-    {Nov. 2021 --- Feb. 2022}
-    {
-      \begin{cvitems}
-        \item {Digitised and redesigned electronics and software for a mass kiwifruit pollinator.}
-        \item {Designed a large-scale kiwifruit transport conveyor system for a pack-house using \textbf{SolidWorks}.}
-        \item {Drafted bespoke CAD models for walk-in clients, working closely with in-house machinists and CNC operators for manufacturing.}
-        \item {Conducted R\&D and documented technical recommendations for a range of future products.}
-        \item {Operated with \textbf{SolidWorks PDM} for CAD component and Assembly management between coworkers.}
-      \end{cvitems}
-    }
-  \cventry%
-    {Early-stage startup developing training aids for competitive sailors.}
-    {Product Development Engineering Intern \textnormal{--- Sixth Sense Marine}}
-    {Tauranga, NZ}
-    {Jul. 2020 --- Nov. 2021}
-    {
-      \begin{cvitems}
-        \item {Sole engineer; designed and built prototype hardware for a GPS-based buoy simulation system, enabling sailors to train without physical course markers.}
-        \item {Integrated \textbf{9-axis IMU} (accel, gyro, magnetometer), \textbf{GPS}, wind sensors, and SD logging into a single waterproofed enclosure.}
-        \item {Developed all firmware and a real-time visual heading/distance indicator for on-water use; training data was logged for post-session performance analysis.}
-      \end{cvitems}
-    }
-
-  \cventry%
-  {International competitive robotics programme spanning secondary and tertiary levels.}
-  {Volunteer Head Referee \textnormal{--- VEX Robotics \& Kiwibots}}
-  {Dallas, TX\,/\,Australia\,/\,New Zealand}
-  {2020 --- 2025}
-  {
-    \begin{cvitems}
-      \item {Invited to officiate at \textbf{VEXU World Championships} (Dallas, TX) and National Championships across AU/NZ — travel and accommodation covered by the organising bodies.}
-      \item {Became the go-to referee for resolving disputes with non-English-speaking international teams; prioritised direct, respectful engagement with competitors at all levels.}
-      \item {Deep rules expertise — regularly identified rule ambiguities and oversights, and liaised directly with game designers on interpretations; also applied this knowledge competitively as a VEXU competitor.}
-    \end{cvitems}
-  }
+  \makeatletter
+  \@for\entry:=\experienceorder\do{\input{CV/experience/\entry.tex}}
+  \makeatother
 \end{cventries}

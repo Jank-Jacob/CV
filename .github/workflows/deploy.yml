@@ -1,5 +1,4 @@
 name: Generate PDF
-
 on:
   pull_request:
     branches:
@@ -15,20 +14,14 @@ env:
 jobs:
   build-docker:
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
       packages: write
       attestations: write
       id-token: write
-
     strategy:
       matrix:
-        platform: [
-          linux/amd64,
-          # linux/arm64 # Arm builds not well supported yet.
-        ]
-
+        platform: [linux/amd64]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -77,15 +70,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create lowercase image name
-        run: echo "IMAGE_NAME_LOWER=$(echo ${{ env.IMAGE_NAME }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
-      - name: Build all CV variants
+      - name: Build all generic CV variants
         run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:main
-          docker run --rm -v ${{ github.workspace }}:/workspace ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:main /bin/bash -c "
-            cd /workspace && ./build.sh
-          "
+          # 1. Calculate it and store it as a standard shell variable
+          LOWERCASE_IMAGE=$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
+
+          # 2. Reference it using $LOWERCASE_IMAGE (Shell syntax)
+          docker pull ${{ env.REGISTRY }}/$LOWERCASE_IMAGE:main
+
+          docker run --rm -v ${{ github.workspace }}:/workspace \
+            ${{ env.REGISTRY }}/$LOWERCASE_IMAGE:main \
+            /bin/bash -c "cd /workspace && ./build.sh"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -100,4 +95,4 @@ jobs:
           tag_name: latest
           files: |
             builds/*.pdf
-            Jacob_Church_CV_Preview.png
+            builds/Jacob_Church_CV_Preview.png

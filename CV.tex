@@ -5,55 +5,49 @@
 \documentclass[11pt, a4paper]{awesome-cv}
 
 % Configure page margins with geometry
-\geometry{left=1.5cm, top=.3cm, right=1.5cm, bottom=1.4cm, footskip=.5cm}
-
-% Color for highlights
-% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
-%                 awesome-nephritis, awesome-concrete, awesome-darknight
-%\colorlet{awesome}{awesome-skyblue}
-% Uncomment if you would like to specify your own color
+\geometry{left=1.7cm, top=.3cm, right=1.7cm, bottom=1.4cm, footskip=.5cm}
 \definecolor{awesome}{HTML}{00aeef}
 
-% Pull in the shared brain
+%-------------------------------------------------------------------------------
+% Load job-specific overrides if a job folder was specified via --job.
+% \clfolder is passed from build.sh alongside \jobtype.
+% This allows job_details.tex to override \jobtype, \projectorder,
+% \experienceorder, \inventorfirst, \regionoverride, \addressoverride etc.
+% For generic builds (no --job), this block is skipped entirely.
+%-------------------------------------------------------------------------------
+\ifdefined\clfolder%
+  \IfFileExists{\clfolder/job_details.tex}{
+    \typeout{CV-generator: loading job overrides from \clfolder/job_details.tex}
+    % Preserve the jobtype passed from the command line (build.sh --cv flag)
+    % job_details.tex may define \jobtype for its preferred variant, but the
+    % explicit command-line value always wins.
+    \ifdefined\jobtype\edef\jobtypebackup{\jobtype}\fi
+    \input{\clfolder/job_details.tex}
+    \ifdefined\jobtypebackup\edef\jobtype{\jobtypebackup}\fi
+  }{}
+\fi
+
+% Load shared config (identity, toggles, helpers)
 \input{shared_configs.tex}
 
-% Colors for text
-% Uncomment if you would like to specify your own color
-% \definecolor{darktext}{HTML}{414141}
-% \definecolor{text}{HTML}{333333}
-% \definecolor{graytext}{HTML}{5D5D5D}
-% \definecolor{lighttext}{HTML}{999999}
-% \definecolor{sectiondivider}{HTML}{5D5D5D}
-
-% Set false if you don't want to highlight section with awesome color
 \setbool{acvSectionColorHighlight}{true}
-
-% If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
-
+% Increase gap between contact row and summary (default 6mm)
+\renewcommand{\acvHeaderAfterSocialSkip}{9mm}
 \usepackage{enumitem}
 \usepackage{needspace}
+% Note: etoolbox already loaded by awesome-cv.cls
 \setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt, labelsep=1.5ex}
-
 \makecvfooter{\today}{Jacob Church · CV}{\thepage}
 
 \begin{document}
-% Print the header with shared config personal information
 \makecvheader[C]
-
-%-------------------------------------------------------------------------------
-%	CV/RESUME CONTENT
-%	Each section is imported separately, open each file in turn to modify content
-%-------------------------------------------------------------------------------
 \input{CV/personal_statement.tex}
 \input{CV/experience.tex}
 \input{CV/skills.tex}
-\input{CV/achievements.tex}
 \input{CV/education.tex}
+\input{CV/achievements.tex}
 \input{CV/projects.tex}
-
-\vspace{1.5cm} % Adjust this value to push the line further down if needed
-\centering{\textbf{References Available on Request}}
-
-%-------------------------------------------------------------------------------
+\needspace{4\baselineskip}
+\centering{\large{\textbf{References Available on Request}}}
 \end{document}
